@@ -39,48 +39,48 @@ const matches: Match[] = [
         ],
     },
     {
-        sport: "tennis",
+        sport: 'tennis',
         participant1: 'Maria Sharapova',
         participant2: 'Serena Williams',
         score: '2:1,7:6,6:3,6:7',
     },
     {
-        sport: "ski jumping",
+        sport: 'ski jumping',
     }
 ];
 
 class EventParser {
     makeEventName(match: Match): string {
-        const versusDelimiter = match.sport === "tennis" ||  match.sport ==="handball" ? " vs " : " - " ;
+        const versusDelimiter = match.sport === 'tennis' ||  match.sport ==='handball' ? ' vs ' : ' - ' ;
         return (
             match.participant1 && match.participant2 ? 
-                `${match.participant1}${versusDelimiter}${match.participant1}` : "Exception: invalid sport"
+                `${match.participant1}${versusDelimiter}${match.participant2}` : 'Exception: invalid sport'
         ); 
     }
 
     formatScore(match: Match): string {
         switch (match.sport) {
-            case "soccer":
-            case "handball":
+            case 'soccer':
+            case 'handball':
                 return match.score as string;  
-            case "volleyball":
-            case "tennis":  
-                if(typeof match.score === "string") {
+            case 'volleyball':
+            case 'tennis':  
+                if(typeof match.score === 'string') {
                     const scoresSplited = match.score.split(',');
                     return (
                         `Main score:  ${scoresSplited[0]} (set1  ${scoresSplited[1]}, set2  ${scoresSplited[2]}, set3  ${scoresSplited[3]})`
                     );
                 } 
                 break; 
-            case "basketball":
+            case 'basketball':
                 if(Array.isArray(match.score)){
                     return (match.score as string[][]).flat().join(',');
                 }
                 break;
             default:  
-                return "Exception: invalid sport";
+                return 'Exception: invalid sport';
         }
-        return "Exception: invalid sport"
+        return 'Exception: invalid sport'
     }
 }
 
@@ -93,4 +93,5 @@ let matchesParsed: MatchParsed[] = matches.map((match)=>{
 }).filter(matchParsed => matchParsed.name !== 'Exception: invalid sport' && matchParsed.score !== 'Exception: invalid sport');
 
 console.log(matchesParsed);
+console.log(matchesParsed[0]);
 
