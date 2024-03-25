@@ -93,4 +93,3 @@ let matchesParsed: MatchParsed[] = matches.map((match)=>{
 }).filter(matchParsed => matchParsed.name !== 'Exception: invalid sport' && matchParsed.score !== 'Exception: invalid sport');
 
 console.log(matchesParsed);
-
